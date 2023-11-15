@@ -1,5 +1,5 @@
 //index.js
-require('dotenv').config(); // Import dotenv to load environment variables
+require('dotenv').config(); 
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
