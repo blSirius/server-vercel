@@ -1,31 +1,19 @@
-//index.js
-require('dotenv').config(); 
+require('dotenv').config()
+const { MongoClient } = require('mongodb');
 const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri);
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+app.get("/", async (req, res) => {
+    res.send('hello peter')
 })
-.then(() => {
-    console.log('MongoDB connected successfully');
-})
-.catch((error) => {
-    console.error('MongoDB connection failed:', error);
-});
 
-app.get('/', async (req, res) => {
-    res.send('hello peter');
-});
-
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
 });
