@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://siriusblackazka:azkabann@cluster0.ar5fu2f.mongodb.net/?retryWrites=true&w=majority/Auth', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://siriusblackazka:azkabann@cluster0.ar5fu2f.mongodb.net/Auth/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
