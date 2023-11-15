@@ -1,22 +1,22 @@
-const express = require('express')
-const cors = require('cors')
-const mongoose = require('mongoose')
+require('dotenv').config(); // Import dotenv to load environment variables
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors());
 
-mongoose.connect('mongodb+srv://siriusblackazka:azkabann@cluster0.mou1mqu.mongodb.net/Auth', {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
 app.get('/', async (req, res) => {
-    res.send('hello peter')
+    res.send('hello peter');
 });
 
 app.listen(PORT, () => {
