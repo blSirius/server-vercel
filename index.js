@@ -9,10 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/< Your database name >', {
+mongoose.connect('mongodb://localhost:27017/Auth', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+}).catch(error => console.error("MongoDB connection error:", error));
 
 app.get('/',(req,res)=>{
     res.send(`Server is running on http://localhost:${PORT}`)
