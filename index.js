@@ -14,9 +14,15 @@ mongoose.connect('mongodb://localhost:27017/Auth', {
     useUnifiedTopology: true,
 }).catch(error => console.error("MongoDB connection error:", error));
 
-app.get('/',(req,res)=>{
-    res.send(`Server is running on http://localhost:${PORT}`)
-})
+app.get('/', async (req, res) => {
+    try {
+        // Your code here
+        res.send('Success');
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
